@@ -3,69 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>APA Style Learning Hub & Generator</title>
+    <title>APA Style Hub & Generator</title>
     <style>
         :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #34495e;
-            --accent-color: #3498db;
-            --bg-color: #f8f9fa;
-            --card-bg: #ffffff;
-            --text-color: #333333;
-            --border-color: #e2e8f0;
+            --bg-gradient: linear-gradient(135deg, #f4fbf7 0%, #f0f7ff 100%);
+            --primary-text: #2c3a47;
+            --secondary-text: #57606f;
+            
+            /* Pastel Palette */
+            --pastel-blue-light: #e0f2fe;
+            --pastel-blue: #bae6fd;
+            --pastel-blue-dark: #0369a1;
+            
+            --pastel-green-light: #f0fdf4;
+            --pastel-green: #bbf7d0;
+            --pastel-green-dark: #15803d;
+            
+            --accent-gradient: linear-gradient(135deg, #38bdf8 0%, #4ade80 100%);
+            --card-shadow: 0 10px 30px rgba(165, 214, 167, 0.08), 0 1px 8px rgba(14, 165, 233, 0.04);
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --border-radius: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            transition: all 0.3s ease;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--bg-color);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: var(--bg-gradient);
+            color: var(--primary-text);
+            line-height: 1.7;
             margin: 0;
             padding: 0;
+            min-height: 100vh;
         }
 
         .container {
-            max-width: 1100px;
+            max-width: 1150px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 40px 20px;
         }
 
-        /* Language Selection Screen */
+        /* Language Choice Screen */
         #language-screen {
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 80vh;
-            text-align: center;
+            min-height: 85vh;
         }
 
-        .lang-box {
+        .welcome-card {
             background: var(--card-bg);
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 50px 40px;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+            max-width: 550px;
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .welcome-icon {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            display: inline-block;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .welcome-card h2 {
+            font-size: 2rem;
+            margin-top: 0;
+            color: var(--primary-text);
+            font-weight: 800;
+        }
+
+        .welcome-card p {
+            color: var(--secondary-text);
+            margin-bottom: 35px;
+            font-size: 1.05rem;
+        }
+
+        .lang-btn-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
         }
 
         .btn-lang {
-            background-color: var(--accent-color);
-            color: white;
-            border: none;
-            padding: 15px 40px;
-            margin: 10px;
+            padding: 16px 25px;
             font-size: 1.1rem;
-            font-weight: bold;
-            border-radius: 8px;
+            font-weight: 700;
+            border: none;
+            border-radius: 14px;
             cursor: pointer;
-            transition: background 0.2s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
         }
 
-        .btn-lang:hover {
-            background-color: #2980b9;
+        .btn-lang.en {
+            background-color: var(--pastel-blue-light);
+            color: var(--pastel-blue-dark);
+        }
+        .btn-lang.en:hover {
+            background-color: var(--pastel-blue);
+            transform: translateY(-2px);
         }
 
-        /* Main Dashboard */
+        .btn-lang.es {
+            background-color: var(--pastel-green-light);
+            color: var(--pastel-green-dark);
+        }
+        .btn-lang.es:hover {
+            background-color: var(--pastel-green);
+            transform: translateY(-2px);
+        }
+
+        /* Main Dashboard Dashboard view */
         #main-content {
             display: none;
         }
@@ -74,193 +131,301 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 20px;
-            margin-bottom: 25px;
+            margin-bottom: 40px;
+            background: var(--card-bg);
+            padding: 20px 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+        }
+
+        header h1 {
+            font-size: 1.5rem;
+            margin: 0;
+            font-weight: 800;
+            background: linear-gradient(135deg, #0284c7 0%, #16a34a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .btn-switch-lang {
-            background: transparent;
-            border: 1px solid var(--accent-color);
-            color: var(--accent-color);
-            padding: 8px 16px;
-            border-radius: 6px;
+            background: white;
+            border: 2px solid var(--pastel-blue);
+            color: var(--pastel-blue-dark);
+            padding: 10px 20px;
+            border-radius: 12px;
             cursor: pointer;
-            font-weight: 500;
+            font-weight: 700;
+            font-size: 0.9rem;
         }
 
-        /* Tabs Navigation */
+        .btn-switch-lang:hover {
+            background: var(--pastel-blue-light);
+            transform: scale(1.03);
+        }
+
+        /* Navigation Tab Architecture */
         .tabs-container {
             display: flex;
             flex-wrap: wrap;
-            gap: 5px;
-            margin-bottom: 20px;
-            border-bottom: 1px solid var(--border-color);
+            gap: 10px;
+            margin-bottom: 25px;
         }
 
         .tab-btn {
-            background: #edf2f7;
-            border: none;
-            padding: 12px 20px;
+            background: var(--card-bg);
+            border: 1px solid rgba(0,0,0,0.03);
+            padding: 14px 22px;
             cursor: pointer;
             font-weight: 600;
-            color: var(--secondary-color);
-            border-radius: 6px 6px 0 0;
-            transition: all 0.2s;
+            color: var(--secondary-text);
+            border-radius: 12px;
+            font-size: 0.95rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
         }
 
         .tab-btn:hover {
-            background: #e2e8f0;
+            background: var(--pastel-blue-light);
+            color: var(--pastel-blue-dark);
+            transform: translateY(-1px);
         }
 
         .tab-btn.active {
-            background: var(--primary-color);
+            background: var(--accent-gradient);
             color: white;
+            font-weight: 700;
+            box-shadow: 0 8px 20px rgba(74, 222, 128, 0.2);
         }
 
-        /* Tab Content Panel */
+        /* Stylized Learning Modules Panels */
         .tab-panel {
             display: none;
             background: var(--card-bg);
-            padding: 30px;
-            border-radius: 0 0 8px 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            border: 1px solid var(--border-color);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            animation: fadeIn 0.4s ease-in-out;
         }
 
         .tab-panel.active {
             display: block;
         }
 
-        /* Typography & Formatting Elements */
-        h1, h2, h3 {
-            color: var(--primary-color);
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        hr {
-            border: 0;
-            height: 1px;
-            background: var(--border-color);
-            margin: 20px 0;
+        /* Typography Inside Material Panels */
+        .tab-panel h2 {
+            font-size: 2rem;
+            margin-top: 0;
+            color: var(--primary-text);
+            font-weight: 800;
+            border-bottom: 3px solid var(--pastel-green);
+            padding-bottom: 12px;
+            display: inline-block;
         }
 
-        .citation-tag {
-            font-size: 0.8rem;
-            color: #7f8c8d;
-            font-weight: bold;
-            margin-left: 4px;
-            vertical-align: super;
+        .tab-panel h3 {
+            font-size: 1.3rem;
+            color: #1e293b;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-weight: 700;
         }
 
-        ul {
-            padding-left: 20px;
+        .tab-panel p {
+            font-size: 1.05rem;
+            color: var(--secondary-text);
+        }
+
+        /* Visual accent boxes */
+        blockquote {
+            background: var(--pastel-blue-light);
+            border-left: 5px solid #0ea5e9;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 4px 12px 12px 4px;
+            font-style: normal;
+            color: #0369a1;
+        }
+        
+        blockquote strong {
+            color: #0c4a6e;
+        }
+
+        ul, ol {
+            padding-left: 25px;
         }
 
         li {
-            margin-bottom: 8px;
+            margin-bottom: 12px;
+            font-size: 1.05rem;
+            color: var(--secondary-text);
         }
 
-        blockquote {
-            border-left: 4px solid var(--accent-color);
-            background: #f8fafc;
-            margin: 15px 0;
-            padding: 15px 20px;
-            font-style: italic;
+        li strong {
+            color: var(--primary-text);
         }
 
-        /* Tables styling */
+        /* Modern styled responsive grids/matrices */
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 20px 0;
+            margin: 30px 0;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
         }
 
         th, td {
-            border: 1px solid var(--border-color);
-            padding: 12px;
+            padding: 16px 20px;
             text-align: left;
+            font-size: 1rem;
         }
 
         th {
-            background-color: #f1f5f9;
-            color: var(--primary-color);
+            background-color: var(--pastel-blue-light);
+            color: var(--pastel-blue-dark);
+            font-weight: 700;
         }
 
-        /* APA Form Generator Elements */
-        .generator-box {
+        td {
+            background-color: #ffffff;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Highlight info-pills */
+        .badge {
+            background: var(--pastel-green-light);
+            color: var(--pastel-green-dark);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            display: inline-block;
+        }
+
+        /* Interactive Reference Generator Workspace */
+        .generator-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        @media(max-width: 850px) {
+            .generator-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .generator-form-box {
             background: #f8fafc;
-            padding: 25px;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            border: 1px solid #e2e8f0;
         }
 
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .form-group label {
             display: block;
             font-weight: 600;
-            margin-bottom: 5px;
-            color: var(--primary-color);
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+            color: var(--primary-text);
         }
 
         .form-group input {
             width: 100%;
-            padding: 10px;
-            border: 1px solid #cbd5e1;
-            border-radius: 6px;
-            box-sizing: border-box;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
             font-size: 1rem;
+            outline: none;
+        }
+
+        .form-group input:focus {
+            border-color: #38bdf8;
+            box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.15);
         }
 
         .btn-generate {
-            background-color: #2ecc71;
+            background: var(--accent-gradient);
             color: white;
             border: none;
-            padding: 12px 25px;
-            font-size: 1rem;
-            font-weight: bold;
-            border-radius: 6px;
-            cursor: pointer;
+            padding: 15px;
             width: 100%;
-            transition: background 0.2s;
+            font-size: 1.05rem;
+            font-weight: 700;
+            border-radius: 12px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(74, 222, 128, 0.25);
+            margin-top: 10px;
         }
 
         .btn-generate:hover {
-            background-color: #27ae60;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(74, 222, 128, 0.35);
         }
 
-        /* Formatted Output Styling mirroring strict APA specifications */
-        .apa-output-container {
-            margin-top: 25px;
-            display: none;
-        }
-
-        .apa-output-box {
+        /* Strict Mock Document Output View Box */
+        .apa-paper-output {
             background: white;
             border: 1px solid #cbd5e1;
-            padding: 20px;
-            border-radius: 6px;
-            /* Strict APA styling criteria from text */
-            text-align: left; /* [cite: 136] */
-            line-height: 2; /* [cite: 67] */
-            padding-left: 1.27cm; /* [cite: 154] */
-            text-indent: -1.27cm; /* [cite: 154] */
-            word-wrap: break-word; /* [cite: 139] */
-            font-family: 'Times New Roman', Times, serif;
-            font-size: 12pt;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+            border-radius: 8px;
+            padding: 40px;
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
         }
 
-        .apa-badge {
-            display: inline-block;
-            background: #e0f2fe;
-            color: #0369a1;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.85rem;
+        .apa-paper-header-badge {
+            background: #f1f5f9;
+            color: #64748b;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.8rem;
             font-weight: bold;
-            margin-bottom: 10px;
+            margin-bottom: 25px;
+            text-align: center;
+            border: 1px dashed #cbd5e1;
+        }
+
+        .apa-formatted-text {
+            text-align: left;
+            line-height: 2; /* Strict APA rule */
+            padding-left: 1.27cm; /* Strict APA hanging indent */
+            text-indent: -1.27cm; /* Strict APA hanging indent */
+            word-wrap: break-word;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 12pt;
+            color: black;
+        }
+
+        .placeholder-text {
+            font-family: system-ui;
+            text-indent: 0;
+            padding-left: 0;
+            color: #94a3b8;
+            text-align: center;
+            margin-auto: top;
+            font-style: italic;
+            line-height: 1.5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
         }
     </style>
 </head>
@@ -268,11 +433,14 @@
 
 <div class="container">
     <div id="language-screen">
-        <div class="lang-box">
-            <h2>Welcome to the APA Style Learning Hub</h2>
-            <p>Please select your preferred language / Por favor seleccione su idioma preferido</p>
-            <button class="btn-lang" onclick="initializeSite('en')">English</button>
-            <button class="btn-lang" onclick="initializeSite('es')">Español</button>
+        <div class="welcome-card">
+            <div class="welcome-icon">📘</div>
+            <h2>APA Style Learning Hub</h2>
+            <p>Master APA 7th Edition formatting criteria with modular guides and live structural generators.<br><small>Por favor, seleccione su idioma para continuar.</small></p>
+            <div class="lang-btn-group">
+                <button class="btn-lang en" onclick="startApp('en')">English</button>
+                <button class="btn-lang es" onclick="startApp('es')">Español</button>
+            </div>
         </div>
     </div>
 
@@ -282,543 +450,192 @@
             <button class="btn-switch-lang" onclick="toggleLanguage()" id="lang-toggle-btn">Español</button>
         </header>
 
-        <div class="tabs-container" id="tabs-nav">
-            </div>
+        <div class="tabs-container" id="tabs-nav"></div>
 
-        <div id="panels-container">
-            </div>
+        <div id="panels-container"></div>
     </div>
 </div>
 
 <script>
-    // Comprehensive dictionary structured around the source document nodes.
-    const localization = {
+    // Rich content structural data localized cleanly across EN/ES arrays
+    const dictionary = {
         en: {
             title: "APA Style Guidelines (7th Edition)",
             toggleBtn: "Español",
             generator: {
-                tabName: "APA Reference Generator",
-                heading: "Webpage APA Citation Generator",
-                desc: "Fill in the parameters below based on your target website link. The generator outputs structural strings adhering strictly to APA reference rules.",
+                tabName: "📝 APA Reference Generator",
+                heading: "Webpage Reference Generator",
+                desc: "Paste your source web link metrics. The output simulates the formatting of an APA References section page with double spacing and hanging indents.",
                 urlLabel: "Website Link / URL:",
                 authorLabel: "Author(s) (Format: Lastname, A. A.):",
-                yearLabel: "Publication Year (e.g., 2026, n.d.):",
-                titleLabel: "Page / Article Title:",
+                yearLabel: "Publication Date (Format: 2026, or n.d.):",
+                titleLabel: "Webpage/Article Title:",
                 siteNameLabel: "Website Name:",
-                btnText: "Generate APA Reference Entry",
-                outputHeading: "Your Formatted APA Reference:",
-                badge: "Strict APA Format (Double-spaced, 1.27cm hanging indent)"
+                btnText: "Generate Reference Entry",
+                outputHeader: "APA Reference Section Simulation Preview",
+                placeholder: "Fill out the fields on the left and click generate to view the APA reference rendering here..."
             },
             tabs: {
-                font: "Font",
-                headings: "Headings",
+                font: "Font Options",
+                headings: "Heading Levels",
                 spacing: "Line Spacing",
-                margins: "Margins",
-                order: "Order of Pages",
+                margins: "Margins Rule",
+                order: "Page Order",
                 header: "Page Header",
-                alignment: "Alignment & Indentation"
+                alignment: "Alignment & Indents"
             },
             content: {
                 font: `
-                    <h2>Font Options and Requirements <span class="citation-tag">[cite: 1]</span></h2>
-                    <hr>
-                    <p>A variety of fonts are permitted in APA Style papers, including the default font of your word-processing program <span class="citation-tag">[cite: 2]</span>. Permitted font configuration options include the following:</p>
+                    <h2>Font Options and Requirements</h2>
+                    <p>A wide variety of accessible fonts are permitted in APA Style papers, including the default font configuration of your modern word-processing program.</p>
                     
-                    <h3>Sans Serif Fonts</h3>
+                    <h3>Sans Serif Options</h3>
                     <ul>
-                        <li>12-point Aptos <span class="citation-tag">[cite: 4]</span></li>
-                        <li>11-point Calibri <span class="citation-tag">[cite: 4]</span></li>
-                        <li>11-point Arial <span class="citation-tag">[cite: 4]</span></li>
-                        <li>10-point Lucida Sans Unicode <span class="citation-tag">[cite: 4]</span></li>
+                        <li><strong>12-point Aptos</strong></li>
+                        <li><strong>11-point Calibri</strong></li>
+                        <li><strong>11-point Arial</strong></li>
+                        <li><strong>10-point Lucida Sans Unicode</strong></li>
                     </ul>
 
-                    <h3>Serif Fonts</h3>
+                    <h3>Serif Options</h3>
                     <ul>
-                        <li>12-point Times New Roman <span class="citation-tag">[cite: 5]</span></li>
-                        <li>11-point Georgia <span class="citation-tag">[cite: 5]</span></li>
-                        <li>Normal (10-point) Computer Modern (the default font for LaTeX) <span class="citation-tag">[cite: 5]</span></li>
+                        <li><strong>12-point Times New Roman</strong></li>
+                        <li><strong>11-point Georgia</strong></li>
+                        <li><strong>Normal (10-point) Computer Modern</strong> <span class="badge">LaTeX Default</span></li>
                     </ul>
 
                     <blockquote>
-                        <strong>Why these fonts?</strong> We recommend these fonts because they are legible and widely available and because they include special characters such as math symbols and Greek letters <span class="citation-tag">[cite: 6]</span>. Modern screen resolutions can typically accommodate either type of font, and users of assistive technologies can adjust settings to preference <span class="citation-tag">[cite: 8]</span>.
+                        <strong>Accessibility Insight:</strong> These specific fonts are highly recommended because they are universally legible, globally accessible, and structurally include mathematical symbol variations and Greek typography sets.
                     </blockquote>
 
-                    <h3>Exceptions to Using the Same Font</h3>
-                    <p>Use the same font throughout your paper, with the following unique exceptions <span class="citation-tag">[cite: 10]</span>:</p>
+                    <h3>Exceptions to Document Uniformity</h3>
+                    <p>Keep your font configuration identical across all pages, with the following exceptions:</p>
                     <ul>
-                        <li><strong>Figures:</strong> Within figure images, use a sans serif font with a type size between 8 and 14 points <span class="citation-tag">[cite: 11]</span>.</li>
-                        <li><strong>Computer code:</strong> To present computer code, use a monospace font such as 10-point Lucida Console or 10-point Courier New <span class="citation-tag">[cite: 12]</span>.</li>
-                        <li><strong>Footnotes:</strong> When inserting footnotes with the default function of your word-processor, use the default font settings. The font might be smaller and have different line spacing, and it is not necessary to change it <span class="citation-tag">[cite: 13, 14]</span>.</li>
+                        <li><strong>Figures:</strong> Inside graphic vectors/images, use a clean sans serif font sized strictly between 8 and 14 points.</li>
+                        <li><strong>Computer Source Code:</strong> Present raw system code using a monospace layout stack, such as 10-point Lucida Console or 10-point Courier New.</li>
+                        <li><strong>Footnotes:</strong> Let your system default settings determine footnote scaling (typically smaller text and tightened single line-spacing). Modification is not necessary.</li>
                     </ul>
-
-                    <hr>
-                    <p><strong>Length Rule:</strong> Instructors and publishers vary in how they specify length requirements <span class="citation-tag">[cite: 15]</span>. Because different fonts take up different amounts of space on a page <span class="citation-tag">[cite: 16]</span>, we recommend using <strong>word count</strong> rather than page count to gauge paper length <span class="citation-tag">[cite: 17]</span>.</p>
+                    <p><strong>Note on Length:</strong> Since alternative fonts take up varying dimensional space, use <strong>word count parameters</strong> instead of abstract page limitations when gauging text length requirements.</p>
                 `,
                 headings: `
-                    <h2>Headings Formatting and Levels <span class="citation-tag">[cite: 18]</span></h2>
-                    <hr>
-                    <p>Headings identify content within sections of a paper. They should be descriptive and concise to aid both visual and nonvisual readers <span class="citation-tag">[cite: 19, 20]</span>. There are five levels of heading in APA Style <span class="citation-tag">[cite: 22]</span>.</p>
+                    <h2>Headings Structure & Format</h2>
+                    <p>Headings identify content modules within sections of a paper. They must remain highly descriptive and structurally concise. APA Style enforces five hierarchical level structures.</p>
                     
-                    <h3>Format Matrix of Headings <span class="citation-tag">[cite: 41, 42]</span></h3>
                     <table>
                         <thead>
                             <tr>
-                                <th>Level <span class="citation-tag">[cite: 43]</span></th>
-                                <th>Format <span class="citation-tag">[cite: 43]</span></th>
-                                <th>Text Flow <span class="citation-tag">[cite: 43]</span></th>
+                                <th>Level</th>
+                                <th>Visual Layout Format Rule</th>
+                                <th>Subsequent Paragraph Flow</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td><strong>1</strong></td>
-                                <td>Centered, Bold, Title Case Heading</td>
-                                <td>Text begins as a new paragraph.</td>
+                                <td><strong>Level 1</strong></td>
+                                <td><strong>Centered, Bold, Title Case Heading</strong></td>
+                                <td>Text starts as a fresh, standard paragraph.</td>
                             </tr>
                             <tr>
-                                <td><strong>2</strong></td>
-                                <td>Flush Left, Bold, Title Case Heading</td>
-                                <td>Text begins as a new paragraph.</td>
+                                <td><strong>Level 2</strong></td>
+                                <td><strong>Flush Left, Bold, Title Case Heading</strong></td>
+                                <td>Text starts as a fresh, standard paragraph.</td>
                             </tr>
                             <tr>
-                                <td><strong>3</strong></td>
-                                <td>Flush Left, Bold Italic, Title Case Heading</td>
-                                <td>Text begins as a new paragraph.</td>
+                                <td><strong>Level 3</strong></td>
+                                <td><strong>Flush Left, Bold Italic, Title Case Heading</strong></td>
+                                <td>Text starts as a fresh, standard paragraph.</td>
                             </tr>
                             <tr>
-                                <td><strong>4</strong></td>
-                                <td>Indented, Bold, Title Case Heading, Ending With a Period.</td>
-                                <td>Text begins on the same line and continues as a regular paragraph.</td>
+                                <td><strong>Level 4</strong></td>
+                                <td><strong>Indented, Bold, Title Case Heading, Ending With a Period.</strong></td>
+                                <td>Text flows immediately inline on the same line.</td>
                             </tr>
                             <tr>
-                                <td><strong>5</strong></td>
-                                <td>Indented, Bold Italic, Title Case Heading, Ending With a Period.</td>
-                                <td>Text begins on the same line and continues as a regular paragraph.</td>
+                                <td><strong>Level 5</strong></td>
+                                <td><strong>Indented, Bold Italic, Title Case Heading, Ending With a Period.</strong></td>
+                                <td>Text flows immediately inline on the same line.</td>
                             </tr>
                         </tbody>
                     </table>
-                    <p><small><em>Note: In title case, most words are capitalized <span class="citation-tag">[cite: 44]</span>.</em></small></p>
 
-                    <h3>Critical Heading Rules</h3>
+                    <h3>Crucial Heading Guidelines</h3>
                     <ul>
-                        <li><strong>No "Introduction" Heading:</strong> Because the first paragraphs are understood to be introductory, an "Introduction" heading is not needed <span class="citation-tag">[cite: 46]</span>. The paper title at the top of the first page acts as a de facto Level 1 heading <span class="citation-tag">[cite: 47]</span>.</li>
-                        <li><strong>Structuring Subsections:</strong> Avoid having only one subsection heading within a section, just like in an outline <span class="citation-tag">[cite: 29]</span>.</li>
-                        <li><strong>No Numbers/Letters:</strong> Do not label headings with numbers or letters <span class="citation-tag">[cite: 30]</span>.</li>
-                        <li><strong>Spacing:</strong> Double-space headings; do not switch to single spacing <span class="citation-tag">[cite: 31]</span>. Do not add blank lines above or below headings, even if a heading falls at the end of a page <span class="citation-tag">[cite: 32]</span>.</li>
+                        <li><strong>No "Introduction" Headings:</strong> The starting paragraphs are automatically identified as introducing the text. Do not add an "Introduction" header. The title of your paper at the top of page 3 serves as the Level 1 structural head.</li>
+                        <li><strong>Subsections:</strong> Avoid creating singular subsection pathways. If you include a subsection layout, use at least two distinct headings under that hierarchy.</li>
+                        <li><strong>Labeling:</strong> Never number or assign alphabetic prefixes (e.g., A, B, 1, 2) to your headings.</li>
+                        <li><strong>Spacing:</strong> Double-space headings continuously. Never inject empty line returns above or below headers.</li>
                     </ul>
                 `,
                 spacing: `
-                    <h2>Line Spacing Requirements <span class="citation-tag">[cite: 65]</span></h2>
-                    <hr>
-                    <p>In general, <strong>double-space all parts</strong> of an APA Style paper, including the abstract, text, block quotations, table and figure items (numbers, titles, notes), and the reference list (including between and within entries) <span class="citation-tag">[cite: 66, 67]</span>.</p>
-                    <p><strong>Pro Tip:</strong> Do not add extra space before or after paragraphs <span class="citation-tag">[cite: 68]</span>.</p>
+                    <h2>Line Spacing Requirements</h2>
+                    <p>The standard baseline requirement is to <strong>double-space all parts</strong> of an APA Style paper. This includes text fields, block quotes, reference listings, abstracts, and metadata tables/notes.</p>
+                    <p><em>Do not insert extra blank spacing margins before or after standard paragraph entries.</em></p>
 
-                    <h3>Exceptions to Double Line Spacing <span class="citation-tag">[cite: 69]</span>:</h3>
+                    <h3>Structural Spacing Exceptions</h3>
                     <ul>
-                        <li><strong>Title page:</strong> Insert a double-spaced blank line between the title and the byline <span class="citation-tag">[cite: 70]</span>. For professional papers, include at least one double-spaced blank line above the author note <span class="citation-tag">[cite: 71]</span>.</li>
-                        <li><strong>Tables:</strong> The table body cells may be single-spaced, one-and-a-half-spaced, or double-spaced, depending on the layout's effectiveness <span class="citation-tag">[cite: 73]</span>.</li>
-                        <li><strong>Figures:</strong> Words within the image part of a figure may be single-spaced, one-and-a-half-spaced, or double-spaced <span class="citation-tag">[cite: 75]</span>.</li>
-                        <li><strong>Footnotes:</strong> When using the native footnotes function, use default settings (usually single-spaced and slightly smaller) <span class="citation-tag">[cite: 77]</span>.</li>
-                        <li><strong>Displayed Equations:</strong> It is permissible to apply triple- or quadruple-spacing in special circumstances, such as before and after an equation <span class="citation-tag">[cite: 78]</span>.</li>
+                        <li><strong>Title Page:</strong> Add one double-spaced empty text row between your main title text and the author byline fields. Professional papers also require a double-spaced line break above the final author notes field.</li>
+                        <li><strong>Tables:</strong> Table text blocks inside cells can be configured using single, 1.5, or double-spacing parameters based on legibility optimization needs.</li>
+                        <li><strong>Figures:</strong> Spacing inside graphs/charts can safely use single or 1.5 configurations.</li>
+                        <li><strong>Equations:</strong> Triple or quadruple spacing layouts may be used before and after complicated inline or standalone algebraic blocks.</li>
                     </ul>
                 `,
                 margins: `
-                    <h2>Margins <span class="citation-tag">[cite: 81]</span></h2>
-                    <hr>
-                    <p>Use <strong>2.54 cm margins</strong> on every side of the page for an APA Style paper <span class="citation-tag">[cite: 82]</span>.</p>
+                    <h2>Document Margins Rule</h2>
+                    <p>Apply a uniform margin framework of exactly <strong>2.54 cm (1 inch)</strong> on all four structural boundaries of every page in the paper.</p>
                 `,
                 order: `
-                    <h2>Order of Pages <span class="citation-tag">[cite: 83]</span></h2>
-                    <hr>
-                    <p>All papers generally include a title page, text, and references <span class="citation-tag">[cite: 84]</span>. Arrange the components of an APA Style paper in the following standard order <span class="citation-tag">[cite: 87]</span>:</p>
+                    <h2>Standard Page Sequencing</h2>
+                    <p>Arrange your comprehensive document blocks in the following exact order:</p>
                     <ol>
-                        <li>Title page <span class="citation-tag">[cite: 88]</span></li>
-                        <li>Abstract (Student papers generally do not include an abstract unless requested) <span class="citation-tag">[cite: 86, 89]</span></li>
-                        <li>Text <span class="citation-tag">[cite: 90]</span></li>
-                        <li>References <span class="citation-tag">[cite: 91]</span></li>
-                        <li>Footnotes <span class="citation-tag">[cite: 92]</span></li>
-                        <li>Tables <span class="citation-tag">[cite: 93]</span></li>
-                        <li>Figures <span class="citation-tag">[cite: 94]</span></li>
-                        <li>Appendices <span class="citation-tag">[cite: 95]</span></li>
+                        <li>Title page</li>
+                        <li>Abstract <span class="badge">Omit for basic student papers</span></li>
+                        <li>Main body text content</li>
+                        <li>References listings</li>
+                        <li>Footnotes list</li>
+                        <li>Tables structural grids</li>
+                        <li>Figures and graphs</li>
+                        <li>Appendices layout</li>
                     </ol>
                     <blockquote>
-                        <strong>Flexibility Rule:</strong> In general, start each section on a new page <span class="citation-tag">[cite: 99]</span>. However, tables and figures can be embedded within the text after they are first mentioned, placed either at the top or bottom of the page with a blank double-spaced line separating them from text <span class="citation-tag">[cite: 100, 101]</span>. Footnotes can also appear at the bottom of their respective text page <span class="citation-tag">[cite: 102]</span>.
+                        <strong>Flexibility Rule:</strong> While sections traditionally begin on brand new layout pages, tables and figures may optionally be embedded inline directly within the body text following their initial textual mention.
                     </blockquote>
                 `,
                 header: `
-                    <h2>Page Header Specifications <span class="citation-tag">[cite: 105]</span></h2>
-                    <hr>
-                    <p>The page header appears within the top margin of every page of the paper <span class="citation-tag">[cite: 106]</span>. The composition depends on the paper type:</p>
-                    <ul>
-                        <li><strong>Student Papers:</strong> Consists of the <strong>page number only</strong> <span class="citation-tag">[cite: 107]</span>.</li>
-                        <li><strong>Professional Papers:</strong> Consists of the <strong>page number</strong> AND the <strong>running head</strong> <span class="citation-tag">[cite: 108]</span>.</li>
-                    </ul>
+                    <h2>Page Header Specifications</h2>
+                    <p>Headers are placed within the top margin layout of every document page. The structure changes depending on your target track:</p>
+                    
+                    <h3>Student Paper Track</h3>
+                    <p>The header must contain <strong>only the current page number</strong>, aligned flush right.</p>
 
-                    <h3>Page Numbers Configuration <span class="citation-tag">[cite: 109]</span></h3>
-                    <ul>
-                        <li>Use the automatic page-numbering function of your word processor <span class="citation-tag">[cite: 111]</span>.</li>
-                        <li>Insert page numbers in the <strong>top right corner</strong> across all pages <span class="citation-tag">[cite: 112]</span>.</li>
-                        <li>The title page carries page number <strong>1</strong> <span class="citation-tag">[cite: 113]</span>.</li>
-                    </ul>
+                    <h3>Professional Paper Track</h3>
+                    <p>The header must contain both the page number (flush right) AND the <strong>Running Head</strong> element (flush left).</p>
 
-                    <h3>Running Head Criteria <span class="citation-tag">[cite: 120]</span></h3>
-                    <p>The running head is an abbreviated version of the title typed in <strong>all-capital letters</strong> <span class="citation-tag">[cite: 121, 125]</span>. It must be no more than <strong>50 characters</strong> (including spaces/punctuation) <span class="citation-tag">[cite: 126]</span>. Avoid abbreviations, though an ampersand (&) is allowed <span class="citation-tag">[cite: 127]</span>. Align it to the left margin of the header, across from the page number <span class="citation-tag">[cite: 130]</span>. <em>Do not use the label "Running head:" before it <span class="citation-tag">[cite: 129]</span>.</em></p>
+                    <h3>Running Head Criteria</h3>
+                    <ul>
+                        <li>Type an abbreviated title using <strong>ALL-CAPITAL LETTERS</strong>.</li>
+                        <li>Limit length to a maximum of <strong>50 characters</strong>, including punctuation marks and spaces.</li>
+                        <li>Never include the literal string prefix "Running head:" before it.</li>
+                    </ul>
                 `,
                 alignment: `
-                    <h2>Paragraph Alignment and Indentation <span class="citation-tag">[cite: 132]</span></h2>
-                    <hr>
+                    <h2>Paragraph Alignment and Indents</h2>
                     
-                    <h3>Paragraph Alignment <span class="citation-tag">[cite: 135]</span></h3>
-                    <p>Align the text of an APA Style paper to the <strong>left margin</strong>, leaving the right margin uneven or "ragged" <span class="citation-tag">[cite: 136]</span>. Do not use full justification <span class="citation-tag">[cite: 137]</span>. Do not insert manual hyphens to break words at the end of lines <span class="citation-tag">[cite: 138]</span>.</p>
+                    <h3>Text Alignment</h3>
+                    <p>Align all text paragraphs strictly to the <strong>left margin</strong>. Leave the right-hand boundary unaligned, creating a "ragged-right" margin layout effect. Do not justify text blocks. Do not insert manual syllable hyphens at line breaks.</p>
                     
-                    <h3>Paragraph Indentation <span class="citation-tag">[cite: 140]</span></h3>
-                    <p>Indent the first line of each paragraph of text <strong>1.27 cm</strong> from the left margin using the Tab key <span class="citation-tag">[cite: 141, 142]</span>. Do not use the space bar <span class="citation-tag">[cite: 143]</span>.</p>
+                    <h3>Paragraph Indentation</h3>
+                    <p>Indent the starting line of every single text paragraph by exactly <strong>1.27 cm (0.5 inches)</strong> using your word-processor's native Tab key interface. Never use the space bar.</p>
 
-                    <h3>Core Exceptions to Indentation Formatting <span class="citation-tag">[cite: 144]</span>:</h3>
+                    <h3>Explicit Formatting Exceptions</h3>
                     <ul>
-                        <li><strong>Title Page:</strong> Elements like title, byline, and affiliations must be centered <span class="citation-tag">[cite: 145, 146]</span>.</li>
-                        <li><strong>Section Labels:</strong> Labels like "Abstract" or "References" must be centered and bold <span class="citation-tag">[cite: 147]</span>.</li>
-                        <li><strong>Abstract:</strong> The first line of an abstract is flush left (unindented) <span class="citation-tag">[cite: 148]</span>.</li>
-                        <li><strong>Block Quotations:</strong> Indent the whole block quotation 1.27 cm from the left margin <span class="citation-tag">[cite: 149]</span>.</li>
-                        <li><strong>Headings:</strong> Level 1 headings are centered; Level 2 and 3 are left-aligned <span class="citation-tag">[cite: 151]</span>.</li>
-                        <li><strong>Tables & Figures:</strong> Numbers, titles, and notes must be flush left <span class="citation-tag">[cite: 153]</span>.</li>
-                        <li><strong>Reference List:</strong> Reference list entries must have a <strong>hanging indent of 1.27 cm</strong> <span class="citation-tag">[cite: 154]</span>.</li>
+                        <li><strong>Title Page Details:</strong> All title lines, authors, and metadata elements must be cleanly centered.</li>
+                        <li><strong>Section Labels:</strong> Main division names (e.g., “Abstract,” “References”) must be centered and bold.</li>
+                        <li><strong>Abstract Panel:</strong> Keep the first line of an abstract block completely flush left without an indent.</li>
+                        <li><strong>Block Quotations:</strong> Indent longer quotes completely by 1.27 cm relative to the left margin baseline.</li>
+                        <li><strong>Reference Pages:</strong> Every reference citation entry must employ a strict <strong>1.27 cm hanging indentation</strong> profile.</li>
                     </ul>
                 `
             }
         },
         es: {
-            title: "Guía de Estilo APA (7.ª Edición)",
-            toggleBtn: "English",
-            generator: {
-                tabName: "Generador de Referencias APA",
-                heading: "Generador de Citas APA para Páginas Web",
-                desc: "Complete los parámetros a continuación basados en el enlace del sitio web objetivo. El generador creará cadenas estructurales que cumplen estrictamente con las reglas de referencia de APA.",
-                urlLabel: "Enlace del sitio web / URL:",
-                authorLabel: "Autor(es) (Formato: Apellido, A. A.):",
-                yearLabel: "Año de publicación (ej. 2026, s.f.):",
-                titleLabel: "Título de la página / artículo:",
-                siteNameLabel: "Nombre del sitio web:",
-                btnText: "Generar Entrada de Referencia APA",
-                outputHeading: "Su Referencia con Formato APA:",
-                badge: "Formato APA Estricto (Espacio doble, sangría francesa de 1.27 cm)"
-            },
-            tabs: {
-                font: "Fuente",
-                headings: "Encabezados",
-                spacing: "Espaciado",
-                margins: "Márgenes",
-                order: "Orden de Páginas",
-                header: "Encabezado de Página",
-                alignment: "Alineación y Sangría"
-            },
-            content: {
-                font: `
-                    <h2>Opciones de Fuente y Requisitos <span class="citation-tag">[cite: 1]</span></h2>
-                    <hr>
-                    <p>Se permite una variedad de fuentes en los trabajos con Estilo APA, incluida la fuente predeterminada de su programa de procesamiento de textos <span class="citation-tag">[cite: 2]</span>. Las opciones permitidas de configuración incluyen:</p>
-                    
-                    <h3>Fuentes Sans Serif (Sin Serifas)</h3>
-                    <ul>
-                        <li>Aptos de 12 puntos <span class="citation-tag">[cite: 4]</span></li>
-                        <li>Calibri de 11 puntos <span class="citation-tag">[cite: 4]</span></li>
-                        <li>Arial de 11 puntos <span class="citation-tag">[cite: 4]</span></li>
-                        <li>Lucida Sans Unicode de 10 puntos <span class="citation-tag">[cite: 4]</span></li>
-                    </ul>
-
-                    <h3>Fuentes Serif (Con Serifas)</h3>
-                    <ul>
-                        <li>Times New Roman de 12 puntos <span class="citation-tag">[cite: 5]</span></li>
-                        <li>Georgia de 11 puntos <span class="citation-tag">[cite: 5]</span></li>
-                        <li>Computer Modern normal de 10 puntos (fuente predeterminada para LaTeX) <span class="citation-tag">[cite: 5]</span></li>
-                    </ul>
-
-                    <blockquote>
-                        <strong>¿Por qué estas fuentes?</strong> Se recomiendan estas fuentes porque son legibles, están ampliamente disponibles y contienen caracteres especiales como símbolos matemáticos y letras griegas <span class="citation-tag">[cite: 6]</span>. Las resoluciones de pantalla modernas pueden adaptarse a cualquier tipo de fuente, y los usuarios de tecnologías de asistencia pueden ajustar las configuraciones según sus preferencias <span class="citation-tag">[cite: 8]</span>.
-                    </blockquote>
-
-                    <h3>Excepciones al Uso de la Misma Fuente</h3>
-                    <p>Utilice la misma fuente en todo el documento, con las siguientes excepciones específicas <span class="citation-tag">[cite: 10]</span>:</p>
-                    <ul>
-                        <li><strong>Figuras:</strong> Dentro de las imágenes de las figuras, use una fuente sans serif con un tamaño de letra de entre 8 y 14 puntos <span class="citation-tag">[cite: 11]</span>.</li>
-                        <li><strong>Código de computadora:</strong> Para presentar código fuente, use una fuente monoespaciada como Lucida Console de 10 puntos o Courier New de 10 puntos <span class="citation-tag">[cite: 12]</span>.</li>
-                        <li><strong>Notas al pie:</strong> Al insertar notas al pie con la función nativa de su procesador de textos, mantenga la configuración predeterminada. Es normal que sea más pequeña y con un espaciado diferente; no es necesario cambiarla <span class="citation-tag">[cite: 13, 14]</span>.</li>
-                    </ul>
-
-                    <hr>
-                    <p><strong>Regla de Extensión:</strong> Los instructores y editores varían en cómo especifican los requisitos de longitud del texto <span class="citation-tag">[cite: 15]</span>. Dado que diferentes fuentes ocupan distintas cantidades de espacio en la página <span class="citation-tag">[cite: 16]</span>, recomendamos usar el <strong>conteo de palabras</strong> en lugar del número de páginas para medir la extensión del documento <span class="citation-tag">[cite: 17]</span>.</p>
-                `,
-                headings: `
-                    <h2>Formato y Niveles de Encabezados <span class="citation-tag">[cite: 18]</span></h2>
-                    <hr>
-                    <p>Los encabezados identifican el contenido dentro de las secciones de un documento. Deben ser descriptivos y concisos para guiar a los lectores visuales y no visuales de todas las capacidades <span class="citation-tag">[cite: 19, 20]</span>. El Estilo APA cuenta con cinco niveles de encabezados <span class="citation-tag">[cite: 22]</span>.</p>
-                    
-                    <h3>Matriz de Formato de Encabezados <span class="citation-tag">[cite: 41, 42]</span></h3>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Nivel <span class="citation-tag">[cite: 43]</span></th>
-                                <th>Formato <span class="citation-tag">[cite: 43]</span></th>
-                                <th>Flujo del Texto <span class="citation-tag">[cite: 43]</span></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>1</strong></td>
-                                <td>Centrado, Negrita, Encabezado en Mayúsculas y Minúsculas (Title Case)</td>
-                                <td>El texto comienza como un nuevo párrafo.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>2</strong></td>
-                                <td>Alineado a la Izquierda, Negrita, Encabezado en Mayúsculas y Minúsculas</td>
-                                <td>El texto comienza como un nuevo párrafo.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>3</strong></td>
-                                <td>Alineado a la Izquierda, Negrita Cursiva, Encabezado en Mayúsculas y Minúsculas</td>
-                                <td>El texto comienza como un nuevo párrafo.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>4</strong></td>
-                                <td>Con Sangría, Negrita, Encabezado en Mayúsculas y Minúsculas, Termina con un Punto.</td>
-                                <td>El texto comienza en la misma línea y continúa como un párrafo regular.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>5</strong></td>
-                                <td>Con Sangría, Negrita Cursiva, Encabezado en Mayúsculas y Minúsculas, Termina con un Punto.</td>
-                                <td>El texto comienza en la misma línea y continúa como un párrafo regular.</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <p><small><em>Nota: En el formato de mayúsculas y minúsculas (Title Case), la mayoría de las palabras se capitalizan <span class="citation-tag">[cite: 44]</span>.</em></small></p>
-
-                    <h3>Reglas Críticas de Encabezados</h3>
-                    <ul>
-                        <li><strong>Sin Encabezado de "Introducción":</strong> Debido a que se entiende que los primeros párrafos son introductorios, no se requiere un encabezado llamado "Introducción" <span class="citation-tag">[cite: 46]</span>. El título del documento en la parte superior de la primera página actúa como un encabezado de Nivel 1 de facto <span class="citation-tag">[cite: 47]</span>.</li>
-                        <li><strong>Estructura de Subsecciones:</strong> Evite tener un solo encabezado de subsección dentro de una sección (al igual que en un esquema) <span class="citation-tag">[cite: 29]</span>.</li>
-                        <li><strong>Sin Números ni Letras:</strong> No etiquete los encabezados con letras o números <span class="citation-tag">[cite: 30]</span>.</li>
-                        <li><strong>Espaciado:</strong> Aplique espacio doble a los encabezados; no cambie a espacio simple <span class="citation-tag">[cite: 31]</span>. No agregue líneas en blanco arriba o abajo, incluso si el encabezado queda al final de una página <span class="citation-tag">[cite: 32]</span>.</li>
-                    </ul>
-                `,
-                spacing: `
-                    <h2>Requisitos de Interlineado (Espaciado de Líneas) <span class="citation-tag">[cite: 65]</span></h2>
-                    <hr>
-                    <p>En general, <strong>aplique espacio doble a todas las partes</strong> de un documento con Estilo APA, incluyendo el resumen, texto, citas en bloque, elementos de tablas y figuras (números, títulos, notas) y la lista de referencias (tanto entre como dentro de cada entrada) <span class="citation-tag">[cite: 66, 67]</span>.</p>
-                    <p><strong>Regla de Oro:</strong> No agregue espacio adicional antes o después de los párrafos <span class="citation-tag">[cite: 68]</span>.</p>
-
-                    <h3>Excepciones al Interlineado Doble <span class="citation-tag">[cite: 69]</span>:</h3>
-                    <ul>
-                        <li><strong>Página de título:</strong> Inserte una línea en blanco con doble espacio entre el título y la autoría (byline) <span class="citation-tag">[cite: 70]</span>. Para trabajos profesionales, incluya también al menos una línea en blanco con doble espacio arriba de la nota del autor <span class="citation-tag">[cite: 71]</span>.</li>
-                        <li><strong>Tablas:</strong> Las celdas del cuerpo de la tabla pueden estructurarse a espacio simple, espacio de 1.5 o espacio doble, dependiendo de la efectividad del diseño <span class="citation-tag">[cite: 73]</span>.</li>
-                        <li><strong>Figuras:</strong> Las palabras dentro de la imagen de una figura pueden llevar espacio simple, 1.5 o doble espacio <span class="citation-tag">[cite: 75]</span>.</li>
-                        <li><strong>Notas al pie:</strong> Al usar la función nativa de notas al pie, use la configuración predeterminada (generalmente espacio simple y fuente un poco más pequeña) <span class="citation-tag">[cite: 77]</span>.</li>
-                        <li><strong>Ecuaciones Desplegadas:</strong> Se permite aplicar espacio triple o cuádruple en circunstancias especiales, como antes y después de una ecuación matemática desplegada <span class="citation-tag">[cite: 78]</span>.</li>
-                    </ul>
-                `,
-                margins: `
-                    <h2>Márgenes <span class="citation-tag">[cite: 81]</span></h2>
-                    <hr>
-                    <p>Utilice <strong>márgenes de 2.54 cm</strong> en cada lado de la página para un documento con Estilo APA <span class="citation-tag">[cite: 82]</span>.</p>
-                `,
-                order: `
-                    <h2>Orden de las Páginas <span class="citation-tag">[cite: 83]</span></h2>
-                    <hr>
-                    <p>Todos los trabajos generalmente incluyen una página de título, texto y referencias <span class="citation-tag">[cite: 84]</span>. Organice los elementos en el siguiente orden estándar <span class="citation-tag">[cite: 87]</span>:</p>
-                    <ol>
-                        <li>Página de título <span class="citation-tag">[cite: 88]</span></li>
-                        <li>Resumen (Los trabajos estudiantiles generalmente no lo incluyen a menos que se solicite) <span class="citation-tag">[cite: 86, 89]</span></li>
-                        <li>Texto <span class="citation-tag">[cite: 90]</span></li>
-                        <li>Referencias <span class="citation-tag">[cite: 91]</span></li>
-                        <li>Notas al pie <span class="citation-tag">[cite: 92]</span></li>
-                        <li>Tablas <span class="citation-tag">[cite: 93]</span></li>
-                        <li>Figuras <span class="citation-tag">[cite: 94]</span></li>
-                        <li>Apéndices <span class="citation-tag">[cite: 95]</span></li>
-                    </ol>
-                    <blockquote>
-                        <strong>Regla de Flexibilidad:</strong> En general, comience cada sección en una página nueva <span class="citation-tag">[cite: 99]</span>. Sin embargo, las tablas y figuras se pueden incrustar en el texto después de su mención, posicionadas en la parte superior o inferior de la página con una línea doble en blanco separándolas del texto <span class="citation-tag">[cite: 100, 101]</span>. Las notas al pie también pueden aparecer en la parte inferior de su respectiva página <span class="citation-tag">[cite: 102]</span>.
-                    </blockquote>
-                `,
-                header: `
-                    <h2>Especificaciones del Encabezado de Página <span class="citation-tag">[cite: 105]</span></h2>
-                    <hr>
-                    <p>El encabezado de página aparece dentro del margen superior de cada página del documento <span class="citation-tag">[cite: 106]</span>. Su contenido depende de la modalidad del documento:</p>
-                    <ul>
-                        <li><strong>Trabajos Estudiantiles:</strong> Consta <strong>únicamente del número de página</strong> <span class="citation-tag">[cite: 107]</span>.</li>
-                        <li><strong>Trabajos Profesionales:</strong> Consta del <strong>número de página</strong> Y el <strong>título corrido (running head)</strong> <span class="citation-tag">[cite: 108]</span>.</li>
-                    </ul>
-
-                    <h3>Configuración de Números de Página <span class="citation-tag">[cite: 109]</span></h3>
-                    <ul>
-                        <li>Use la función automatizada de numeración de páginas de su procesador de textos <span class="citation-tag">[cite: 111]</span>.</li>
-                        <li>Inserte los números de página en la <strong>esquina superior derecha</strong> de todas las páginas <span class="citation-tag">[cite: 112]</span>.</li>
-                        <li>La página de título lleva asignado el número <strong>1</strong> <span class="citation-tag">[cite: 113]</span>.</li>
-                    </ul>
-
-                    <h3>Criterios del Título Corrido (Running Head) <span class="citation-tag">[cite: 120]</span></h3>
-                    <p>El título corrido es una versión abreviada del título escrita en <strong>mayúsculas sostenidas</strong> <span class="citation-tag">[cite: 121, 125]</span>. Debe tener un máximo de <strong>50 caracteres</strong> (incluyendo espacios y signos de puntuación) <span class="citation-tag">[cite: 126]</span>. Evite abreviaturas, aunque se permite el uso del símbolo ampersand (&) <span class="citation-tag">[cite: 127]</span>. Aléjelo hacia el margen izquierdo del encabezado, en el lado opuesto al número de página <span class="citation-tag">[cite: 130]</span>. <em>No utilice la etiqueta "Running head:" antes del texto <span class="citation-tag">[cite: 129]</span>.</em></p>
-                `,
-                alignment: `
-                    <h2>Alineación de Párrafo y Sangría <span class="citation-tag">[cite: 132]</span></h2>
-                    <hr>
-                    
-                    <h3>Alineación del Párrafo <span class="citation-tag">[cite: 135]</span></h3>
-                    <p>Alinee el texto del documento hacia el <strong>margen izquierdo</strong>. Deje el margen derecho de manera irregular o "justificado a la izquierda" <span class="citation-tag">[cite: 136]</span>. No use la justificación completa <span class="citation-tag">[cite: 137]</span>. No inserte guiones manuales para cortar palabras al final de la línea <span class="citation-tag">[cite: 138]</span>.</p>
-                    
-                    <h3>Sangría del Párrafo <span class="citation-tag">[cite: 140]</span></h3>
-                    <p>Sangre la primera línea de cada párrafo de texto a <strong>1.27 cm</strong> del margen izquierdo usando la tecla Tab <span class="citation-tag">[cite: 141, 142]</span>. No use la barra espaciadora <span class="citation-tag">[cite: 143]</span>.</p>
-
-                    <h3>Excepciones Principales a la Sangría y Formato <span class="citation-tag">[cite: 144]</span>:</h3>
-                    <ul>
-                        <li><strong>Página de Título:</strong> Elementos como el título, la autoría y afiliaciones deben estar centrados <span class="citation-tag">[cite: 145, 146]</span>.</li>
-                        <li><strong>Etiquetas de Sección:</strong> Etiquetas como "Resumen" o "Referencias" deben centrarse y estar en negrita <span class="citation-tag">[cite: 147]</span>.</li>
-                        <li><strong>Resumen:</strong> La primera línea del resumen va alineada totalmente a la izquierda (sin sangría) <span class="citation-tag">[cite: 148]</span>.</li>
-                        <li><strong>Citas en Bloque:</strong> Sangre toda la cita en bloque a 1.27 cm desde el margen izquierdo <span class="citation-tag">[cite: 149]</span>.</li>
-                        <li><strong>Encabezados:</strong> Los encabezados de Nivel 1 van centrados; los Niveles 2 y 3 van alineados a la izquierda <span class="citation-tag">[cite: 151]</span>.</li>
-                        <li><strong>Tablas y Figuras:</strong> Números, títulos y notas deben estar alineados totalmente a la izquierda <span class="citation-tag">[cite: 153]</span>.</li>
-                        <li><strong>Lista de Referencias:</strong> Las entradas de la lista de referencias deben poseer una <strong>sangría francesa de 1.27 cm</strong> <span class="citation-tag">[cite: 154]</span>.</li>
-                    </ul>
-                `
-            }
-        }
-    };
-
-    let currentLang = 'en';
-
-    function initializeSite(lang) {
-        currentLang = lang;
-        document.getElementById('language-screen').style.display = 'none';
-        document.getElementById('main-content').style.display = 'block';
-        renderSite();
-    }
-
-    function toggleLanguage() {
-        currentLang = currentLang === 'en' ? 'es' : 'en';
-        renderSite();
-    }
-
-    function renderSite() {
-        const langData = localization[currentLang];
-        
-        // General Updates
-        document.getElementById('site-title').innerText = langData.title;
-        document.getElementById('lang-toggle-btn').innerText = langData.toggleBtn;
-
-        // Render Tabs Navigation Layout
-        const tabsNav = document.getElementById('tabs-nav');
-        tabsNav.innerHTML = '';
-        
-        // Define operational sequence mapping keys to friendly structural titles
-        const sectionKeys = ['font', 'headings', 'spacing', 'margins', 'order', 'header', 'alignment'];
-        
-        sectionKeys.forEach((key, index) => {
-            const btn = document.createElement('button');
-            btn.className = `tab-btn ${index === 0 ? 'active' : ''}`;
-            btn.innerText = langData.tabs[key];
-            btn.setAttribute('onclick', `switchTab(event, 'panel-${key}')`);
-            tabsNav.appendChild(btn);
-        });
-
-        // Add Generator Tab Button
-        const genBtn = document.createElement('button');
-        genBtn.className = 'tab-btn';
-        genBtn.innerText = langData.generator.tabName;
-        genBtn.setAttribute('onclick', `switchTab(event, 'panel-generator')`);
-        tabsNav.appendChild(genBtn);
-
-        // Render Panel Views
-        const panelsContainer = document.getElementById('panels-container');
-        panelsContainer.innerHTML = '';
-
-        sectionKeys.forEach((key, index) => {
-            const div = document.createElement('div');
-            div.id = `panel-${key}`;
-            div.className = `tab-panel ${index === 0 ? 'active' : ''}`;
-            div.innerHTML = langData.content[key];
-            panelsContainer.appendChild(div);
-        });
-
-        // Render Generator Panel Template
-        const genDiv = document.createElement('div');
-        genDiv.id = 'panel-generator';
-        genDiv.className = 'tab-panel';
-        genDiv.innerHTML = `
-            <h2>${langData.generator.heading}</h2>
-            <p>${langData.generator.desc}</p>
-            <div class="generator-box">
-                <div class="form-group">
-                    <label>${langData.generator.urlLabel}</label>
-                    <input type="text" id="apa-url" placeholder="https://example.com/article-path">
-                </div>
-                <div class="form-group">
-                    <label>${langData.generator.authorLabel}</label>
-                    <input type="text" id="apa-author" placeholder="Smith, J. A.">
-                </div>
-                <div class="form-group">
-                    <label>${langData.generator.yearLabel}</label>
-                    <input type="text" id="apa-year" placeholder="2026">
-                </div>
-                <div class="form-group">
-                    <label>${langData.generator.titleLabel}</label>
-                    <input type="text" id="apa-page-title" placeholder="Understanding Digital Assets">
-                </div>
-                <div class="form-group">
-                    <label>${langData.generator.siteNameLabel}</label>
-                    <input type="text" id="apa-site-name" placeholder="Tech Journal Online">
-                </div>
-                <button class="btn-generate" onclick="processCitation()">${langData.generator.btnText}</button>
-            </div>
-            
-            <div class="apa-output-container" id="output-wrapper">
-                <h3>${langData.generator.outputHeading}</h3>
-                <span class="apa-badge">${langData.generator.badge}</span>
-                <div class="apa-output-box" id="apa-formatted-string"></div>
-            </div>
-        `;
-        panelsContainer.appendChild(genDiv);
-    }
-
-    function switchTab(evt, panelId) {
-        // Toggle Active Tabs Classes
-        const tabButtons = document.getElementsByClassName('tab-btn');
-        for (let i = 0; i < tabButtons.length; i++) {
-            tabButtons[i].classList.remove('active');
-        }
-        evt.currentTarget.classList.add('active');
-
-        // Toggle Active Panels
-        const tabPanels = document.getElementsByClassName('tab-panel');
-        for (let i = 0; i < tabPanels.length; i++) {
-            tabPanels[i].classList.remove('active');
-        }
-        document.getElementById(panelId).classList.add('active');
-    }
-
-    function processCitation() {
-        // Collect UI elements
-        const url = document.getElementById('apa-url').value.trim();
-        const author = document.getElementById('apa-author').value.trim();
-        const year = document.getElementById('apa-year').value.trim();
-        const title = document.getElementById('apa-page-title').value.trim();
-        const siteName = document.getElementById('apa-site-name').value.trim();
-
-        // Validation fallback steps
-        const finalAuthor = author ? author : "Unknown Author";
-        const finalYear = year ? year : "n.d.";
-        const finalTitle = title ? title : "Untitled Page Document";
-        const finalSite = siteName ? siteName : "Web Platform Source";
-        const finalUrl = url ? url : "https://unspecified-link.com";
-
-        // Generate strict structural component mapping rules from text guidelines:
-        // - Double line spacing [cite: 67]
-        // - Hanging indentation [cite: 154]
-        // - Hyperlink rendering handling [cite: 139]
-        // Base structure formula for APA Webpage: Author, A. A. (Year). Title of page. Site Name. URL
-        const citationOutput = `${finalAuthor} (${finalYear}). <em>${finalTitle}</em>. ${finalSite}. ${finalUrl}`;
-
-        // Populate display fields
-        document.getElementById('apa-formatted-string').innerHTML = citationOutput;
-        document.getElementById('output-wrapper').style.display = 'block';
-    }
-</script>
-
-</body>
-</html>
+            title: "
