@@ -27,7 +27,7 @@
 
         * {
             box-sizing: border-box;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
         }
 
         body {
@@ -122,7 +122,7 @@
             transform: translateY(-2px);
         }
 
-        /* Main Dashboard Dashboard view */
+        /* Main Dashboard View */
         #main-content {
             display: none;
         }
@@ -163,7 +163,7 @@
             transform: scale(1.03);
         }
 
-        /* Navigation Tab Architecture */
+        /* Navigation Tabs */
         .tabs-container {
             display: flex;
             flex-wrap: wrap;
@@ -196,7 +196,7 @@
             box-shadow: 0 8px 20px rgba(74, 222, 128, 0.2);
         }
 
-        /* Stylized Learning Modules Panels */
+        /* Modules Panels */
         .tab-panel {
             display: none;
             background: var(--card-bg);
@@ -216,7 +216,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Typography Inside Material Panels */
         .tab-panel h2 {
             font-size: 2rem;
             margin-top: 0;
@@ -240,7 +239,6 @@
             color: var(--secondary-text);
         }
 
-        /* Visual accent boxes */
         blockquote {
             background: var(--pastel-blue-light);
             border-left: 5px solid #0ea5e9;
@@ -269,7 +267,6 @@
             color: var(--primary-text);
         }
 
-        /* Modern styled responsive grids/matrices */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -300,7 +297,6 @@
             border-bottom: none;
         }
 
-        /* Highlight info-pills */
         .badge {
             background: var(--pastel-green-light);
             color: var(--pastel-green-dark);
@@ -311,7 +307,7 @@
             display: inline-block;
         }
 
-        /* Interactive Reference Generator Workspace */
+        /* Interactive Reference Workspace */
         .generator-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -377,7 +373,7 @@
             box-shadow: 0 6px 20px rgba(74, 222, 128, 0.35);
         }
 
-        /* Strict Mock Document Output View Box */
+        /* Mock Document Output View Box */
         .apa-paper-output {
             background: white;
             border: 1px solid #cbd5e1;
@@ -404,9 +400,9 @@
 
         .apa-formatted-text {
             text-align: left;
-            line-height: 2; /* Strict APA rule */
-            padding-left: 1.27cm; /* Strict APA hanging indent */
-            text-indent: -1.27cm; /* Strict APA hanging indent */
+            line-height: 2; 
+            padding-left: 1.27cm; 
+            text-indent: -1.27cm; 
             word-wrap: break-word;
             font-family: 'Times New Roman', Times, serif;
             font-size: 12pt;
@@ -419,7 +415,8 @@
             padding-left: 0;
             color: #94a3b8;
             text-align: center;
-            margin-auto: top;
+            margin-top: auto;
+            margin-bottom: auto;
             font-style: italic;
             line-height: 1.5;
             display: flex;
@@ -457,7 +454,6 @@
 </div>
 
 <script>
-    // Rich content structural data localized cleanly across EN/ES arrays
     const dictionary = {
         en: {
             title: "APA Style Guidelines (7th Edition)",
@@ -638,4 +634,322 @@
             }
         },
         es: {
-            title: "
+            title: "Guía de Estilo APA (7.ª Edición)",
+            toggleBtn: "English",
+            generator: {
+                tabName: "📝 Generador de Referencias APA",
+                heading: "Generador de Referencias para Páginas Web",
+                desc: "Pegue los datos del sitio web de origen. El cuadro de salida simula una página de la sección de Referencias APA reales con interlineado doble y sangría francesa.",
+                urlLabel: "Enlace de la página web / URL:",
+                authorLabel: "Autor(es) (Formato: Apellido, A. A.):",
+                yearLabel: "Año de publicación (Formato: 2026, o s.f.):",
+                titleLabel: "Título de la página / Artículo:",
+                siteNameLabel: "Nombre del sitio web:",
+                btnText: "Generar Entrada de Referencia",
+                outputHeader: "Simulación de Sección de Referencias APA",
+                placeholder: "Complete los campos de la izquierda y haga clic en generar para visualizar la referencia con formato APA real aquí..."
+            },
+            tabs: {
+                font: "Opciones de Fuente",
+                headings: "Niveles de Encabezado",
+                spacing: "Interlineado",
+                margins: "Márgenes del Papel",
+                order: "Orden de Páginas",
+                header: "Encabezado",
+                alignment: "Alineación y Sangría"
+            },
+            content: {
+                font: `
+                    <h2>Opciones de Fuente y Requisitos</h2>
+                    <p>Se permite una amplia variedad de fuentes accesibles en los documentos de Estilo APA, incluida la configuración predeterminada de su procesador de textos.</p>
+                    
+                    <h3>Opciones Sans Serif (Sin Serifas)</h3>
+                    <ul>
+                        <li><strong>Aptos de 12 puntos</strong></li>
+                        <li><strong>Calibri de 11 puntos</strong></li>
+                        <li><strong>Arial de 11 puntos</strong></li>
+                        <li><strong>Lucida Sans Unicode de 10 puntos</strong></li>
+                    </ul>
+
+                    <h3>Opciones Serif (Con Serifas)</h3>
+                    <ul>
+                        <li><strong>Times New Roman de 12 puntos</strong></li>
+                        <li><strong>Georgia de 11 puntos</strong></li>
+                        <li><strong>Computer Modern normal de 10 puntos</strong> <span class="badge">Predeterminado en LaTeX</span></li>
+                    </ul>
+
+                    <blockquote>
+                        <strong>Información de Accesibilidad:</strong> Estas fuentes específicas se recomiendan debido a su alta legibilidad y disponibilidad global, además de incluir conjuntos completos de símbolos matemáticos y caracteres griegos.
+                    </blockquote>
+
+                    <h3>Excepciones a la Uniformidad del Documento</h3>
+                    <p>Mantenga la misma configuración de fuente en todas las páginas, con las siguientes excepciones:</p>
+                    <ul>
+                        <li><strong>Figuras:</strong> Dentro de las imágenes de las figuras, use una fuente sans serif limpia con un tamaño estricto de entre 8 y 14 puntos.</li>
+                        <li><strong>Código de Computadora:</strong> Presente bloques de código fuente utilizando una fuente monoespaciada, como Lucida Console de 10 puntos o Courier New de 10 puntos.</li>
+                        <li><strong>Notas al Pie:</strong> Permita que la función nativa del sistema determine el tamaño de la nota al pie (por lo general, texto más pequeño y espacio simple). No es necesario modificarlo.</li>
+                    </ul>
+                    <p><strong>Nota sobre la Extensión:</strong> Debido a que las fuentes ocupan un espacio diferente en el papel, se recomienda utilizar el <strong>conteo de palabras</strong> en lugar de límites abstractos de páginas para medir la longitud de un documento.</p>
+                `,
+                headings: `
+                    <h2>Estructura y Formato de Encabezados</h2>
+                    <p>Los encabezados identifican los módulos de contenido dentro de las secciones de un documento. Deben ser descriptivos y concisos. El Estilo APA aplica cinco niveles jerárquicos.</p>
+                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nivel</th>
+                                <th>Regla de Formato Visual</th>
+                                <th>Flujo del Párrafo Siguiente</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Nivel 1</strong></td>
+                                <td><strong>Centrado, Negrita, Encabezado en Mayúsculas y Minúsculas</strong></td>
+                                <td>El texto comienza como un párrafo nuevo y normal.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Nivel 2</strong></td>
+                                <td><strong>Alineado a la Izquierda, Negrita, Encabezado en Mayúsculas y Minúsculas</strong></td>
+                                <td>El texto comienza como un párrafo nuevo y normal.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Nivel 3</strong></td>
+                                <td><strong>Alineado a la Izquierda, Negrita Cursiva, Encabezado en Mayúsculas y Minúsculas</strong></td>
+                                <td>El texto comienza como un párrafo nuevo y normal.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Nivel 4</strong></td>
+                                <td><strong>Con Sangría, Negrita, Encabezado en Mayúsculas y Minúsculas, Termina con un Punto.</strong></td>
+                                <td>El texto fluye inmediatamente en la misma línea.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Nivel 5</strong></td>
+                                <td><strong>Con Sangría, Negrita Cursiva, Encabezado en Mayúsculas y Minúsculas, Termina con un Punto.</strong></td>
+                                <td>El texto fluye inmediatamente en la misma línea.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>Directrices Críticas para Encabezados</h3>
+                    <ul>
+                        <li><strong>Sin Encabezado de "Introducción":</strong> Los párrafos iniciales se identifican automáticamente como la introducción del texto. No añada un encabezado llamado "Introducción". El título del documento en la parte superior de la página sirve como el encabezado de Nivel 1.</li>
+                        <li><strong>Subsecciones:</strong> Evite crear subsecciones únicas. Si incluye una subsección, utilice al menos dos encabezados dentro de ese nivel jerárquico.</li>
+                        <li><strong>Etiquetado:</strong> Nunca numere ni asigne prefijos alfabéticos (ej. A, B, 1, 2) a los encabezados.</li>
+                        <li><strong>Espaciado:</strong> Aplique interlineado doble continuo. Nunca inserte líneas vacías adicionales antes o después de los encabezados.</li>
+                    </ul>
+                `,
+                spacing: `
+                    <h2>Requisitos de Interlineado</h2>
+                    <p>La regla general es <strong>aplicar espacio doble a todas las partes</strong> de un documento de Estilo APA. Esto incluye el texto principal, citas en bloque, listas de referencias, resúmenes y notas de tablas.</p>
+                    <p><em>No inserte espacios en blanco adicionales antes o después de los párrafos estándar.</em></p>
+
+                    <h3>Excepciones de Espaciado Estructural</h3>
+                    <ul>
+                        <li><strong>Página de Título:</strong> Añada una línea vacía con doble espacio entre el título principal y los campos de autoría. Los trabajos profesionales también requieren un salto de línea doble sobre las notas del autor.</li>
+                        <li><strong>Tablas:</strong> El texto dentro de las celdas de las tablas puede configurarse con espacio simple, 1.5 o doble espacio para optimizar la legibilidad.</li>
+                        <li><strong>Figuras:</strong> El espaciado dentro de gráficos o diagramas puede utilizar configuraciones simples o de 1.5.</li>
+                        <li><strong>Ecuaciones:</strong> Se puede utilizar espacio triple o cuádruple antes y después de bloques algebraicos complejos.</li>
+                    </ul>
+                `,
+                margins: `
+                    <h2>Márgenes del Documento</h2>
+                    <p>Aplique un marco de márgenes uniforme de exactamente <strong>2.54 cm (1 pulgada)</strong> en los cuatro bordes estructurales de cada página del documento.</p>
+                `,
+                order: `
+                    <h2>Secuencia Estándar de Páginas</h2>
+                    <p>Organice los bloques de su documento en el siguiente orden exacto:</p>
+                    <ol>
+                        <li>Página de título</li>
+                        <li>Resumen (Abstract) <span class="badge">Omitir en trabajos estudiantiles básicos</span></li>
+                        <li>Cuerpo del texto principal</li>
+                        <li>Lista de referencias</li>
+                        <li>Notas al pie</li>
+                        <li>Tablas estructurales</li>
+                        <li>Figuras y gráficos</li>
+                        <li>Apéndices</li>
+                    </ol>
+                    <blockquote>
+                        <strong>Regla de Flexibilidad:</strong> Aunque tradicionalmente las secciones comienzan en una página nueva, las tablas y figuras pueden opcionalmente incrustarse en el texto directamente después de su mención.
+                    </blockquote>
+                `,
+                header: `
+                    <h2>Especificaciones del Encabezado de Página</h2>
+                    <p>Los encabezados se colocan dentro del margen superior de cada página. La estructura cambia según la modalidad de su trabajo:</p>
+                    
+                    <h3>Modalidad de Trabajo Estudiantil</h3>
+                    <p>El encabezado debe contener <strong>únicamente el número de página actual</strong>, alineado a la derecha.</p>
+
+                    <h3>Modalidad de Trabajo Profesional</h3>
+                    <p>El encabezado debe contener el número de página (derecha) Y el elemento de <strong>Título Corrido (Running Head)</strong> (izquierda).</p>
+
+                    <h3>Criterios del Título Corrido</h3>
+                    <ul>
+                        <li>Escriba una versión abreviada del título utilizando <strong>MAYÚSCULAS SUSTENIDAS</strong>.</li>
+                        <li>Limite la longitud a un máximo de <strong>50 caracteres</strong>, incluyendo signos de puntuación y espacios.</li>
+                        <li>Nunca incluya el prefijo literal "Running head:" antes del texto.</li>
+                    </ul>
+                `,
+                alignment: `
+                    <h2>Alineación de Párrafo y Sangrías</h2>
+                    
+                    <h3>Alineación del Texto</h3>
+                    <p>Alinee todos los párrafos de texto estrictamente al <strong>margen izquierdo</strong>. Deje el borde derecho de manera irregular (sin justificar). No inserte guiones manuales para separar palabras al final de la línea.</p>
+                    
+                    <h3>Sangría de Párrafo</h3>
+                    <p>Sangre la primera línea de cada párrafo de texto exactamente a <strong>1.27 cm (0.5 pulgadas)</strong> usando la tecla Tab de su procesador de textos. Nunca use la barra espaciadora.</p>
+
+                    <h3>Excepciones Explícitas de Formato</h3>
+                    <ul>
+                        <li><strong>Detalles de la Página de Título:</strong> El título, autores y afiliaciones deben estar completamente centrados.</li>
+                        <li><strong>Etiquetas de Sección:</strong> Los nombres de divisiones principales (ej. “Resumen”, “Referencias”) deben estar centrados y en negrita.</li>
+                        <li><strong>Panel del Resumen:</strong> Mantenga la primera línea del bloque del resumen alineada a la izquierda, sin sangría.</li>
+                        <li><strong>Citas en Bloque:</strong> Sangre las citas largas en su totalidad a 1.27 cm con respecto al margen izquierdo.</li>
+                        <li><strong>Páginas de Referencia:</strong> Cada entrada de la lista de referencias debe emplear un perfil estricto de <strong>sangría francesa de 1.27 cm</strong>.</li>
+                    </ul>
+                `
+            }
+        }
+    };
+
+    let activeLang = 'en';
+
+    function startApp(lang) {
+        activeLang = lang;
+        document.getElementById('language-screen').style.display = 'none';
+        document.getElementById('main-content').style.display = 'block';
+        buildInterface();
+    }
+
+    function toggleLanguage() {
+        activeLang = activeLang === 'en' ? 'es' : 'en';
+        buildInterface();
+    }
+
+    function buildInterface() {
+        const langPack = dictionary[activeLang];
+        
+        // Update Static Headers
+        document.getElementById('site-title').innerText = langPack.title;
+        document.getElementById('lang-toggle-btn').innerText = langPack.toggleBtn;
+
+        // Render Navigation Elements
+        const navContainer = document.getElementById('tabs-nav');
+        navContainer.innerHTML = '';
+        
+        const contentKeys = ['font', 'headings', 'spacing', 'margins', 'order', 'header', 'alignment'];
+        
+        contentKeys.forEach((key, idx) => {
+            const button = document.createElement('button');
+            button.className = `tab-btn ${idx === 0 ? 'active' : ''}`;
+            button.innerText = langPack.tabs[key];
+            // FIXED: Using 'this' instead of 'event' ensures bulletproof element node binding across all engine layouts
+            button.setAttribute('onclick', `activateTab(this, 'panel-${key}')`);
+            navContainer.appendChild(button);
+        });
+
+        // Inject Reference Generator Tab Button
+        const generatorTabBtn = document.createElement('button');
+        generatorTabBtn.className = 'tab-btn';
+        generatorTabBtn.innerText = langPack.generator.tabName;
+        // FIXED: Switched to 'this' parameters to prevent runtime evaluation failure
+        generatorTabBtn.setAttribute('onclick', `activateTab(this, 'panel-generator')`);
+        navContainer.appendChild(generatorTabBtn);
+
+        // Render Dynamic Article View Sheets
+        const panelsContainer = document.getElementById('panels-container');
+        panelsContainer.innerHTML = '';
+
+        contentKeys.forEach((key, idx) => {
+            const panel = document.createElement('div');
+            panel.id = `panel-${key}`;
+            panel.className = `tab-panel ${idx === 0 ? 'active' : ''}`;
+            panel.innerHTML = langPack.content[key];
+            panelsContainer.appendChild(panel);
+        });
+
+        // Append Reference Generator Interactive Frame Layout
+        const generatorPanel = document.createElement('div');
+        generatorPanel.id = 'panel-generator';
+        generatorPanel.className = 'tab-panel';
+        generatorPanel.innerHTML = `
+            <h2>${langPack.generator.heading}</h2>
+            <p>${langPack.generator.desc}</p>
+            
+            <div class="generator-container">
+                <div class="generator-form-box">
+                    <div class="form-group">
+                        <label>${langPack.generator.urlLabel}</label>
+                        <input type="text" id="url-field" placeholder="https://www.example.com/article">
+                    </div>
+                    <div class="form-group">
+                        <label>${langPack.generator.authorLabel}</label>
+                        <input type="text" id="author-field" placeholder="Doe, J. M.">
+                    </div>
+                    <div class="form-group">
+                        <label>${langPack.generator.yearLabel}</label>
+                        <input type="text" id="year-field" placeholder="2026">
+                    </div>
+                    <div class="form-group">
+                        <label>${langPack.generator.titleLabel}</label>
+                        <input type="text" id="title-field" placeholder="APA Formatting Insights">
+                    </div>
+                    <div class="form-group">
+                        <label>${langPack.generator.siteNameLabel}</label>
+                        <input type="text" id="site-field" placeholder="Educational Portal">
+                    </div>
+                    <button class="btn-generate" onclick="buildAWAReference()">${langPack.generator.btnText}</button>
+                </div>
+                
+                <div>
+                    <div class="apa-paper-output">
+                        <div class="apa-paper-header-badge">${langPack.generator.outputHeader}</div>
+                        <div id="apa-render-target" class="placeholder-text">${langPack.generator.placeholder}</div>
+                    </div>
+                </div>
+            </div>
+        `;
+        panelsContainer.appendChild(generatorPanel);
+    }
+
+    // FIXED: The function now takes the direct button element argument
+    function activateTab(btnElement, activeId) {
+        // Clear old states
+        const elements = document.getElementsByClassName('tab-btn');
+        for (let btn of elements) {
+            btn.classList.remove('active');
+        }
+        const blocks = document.getElementsByClassName('tab-panel');
+        for (let panel of blocks) {
+            panel.classList.remove('active');
+        }
+        
+        // Enable new selection target profiles safely using the passed reference node
+        btnElement.classList.add('active');
+        document.getElementById(activeId).classList.add('active');
+    }
+
+    function buildAWAReference() {
+        const urlValue = document.getElementById('url-field').value.trim();
+        const authorValue = document.getElementById('author-field').value.trim();
+        const yearValue = document.getElementById('year-field').value.trim();
+        const titleValue = document.getElementById('title-field').value.trim();
+        const siteValue = document.getElementById('site-field').value.trim();
+
+        const author = authorValue ? authorValue : "Unknown Author";
+        const year = yearValue ? yearValue : "n.d.";
+        const title = titleValue ? titleValue : "Untitled Document";
+        const siteName = siteValue ? siteValue : "Web Platform Source";
+        const url = urlValue ? urlValue : "https://unspecified-url.com";
+
+        const structuralCitation = `${author} (${year}). <em>${title}</em>. ${siteName}. ${url}`;
+        
+        const displayBox = document.getElementById('apa-render-target');
+        displayBox.className = "apa-formatted-text";
+        displayBox.innerHTML = structuralCitation;
+    }
+</script>
+
+</body>
+</html>
