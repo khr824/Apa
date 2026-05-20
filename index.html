@@ -175,19 +175,21 @@
             word-break: break-all;
         }
 
-        /* Practice & Apply styles remain consistent... */
-        .quiz-container { max-width: 650px; }
-        .question { font-size: 1.05rem; margin-bottom: 25px; }
-        .options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 25px; }
-        .option-btn { background: transparent; border: 1px solid var(--border-color); color: var(--text-color); padding: 12px 18px; text-align: left; cursor: pointer; font-size: 0.9rem; transition: all 0.2s ease; }
-        .option-btn:hover { border-color: var(--border-focus); background: var(--card-bg); }
+        /* Apply Section Styles */
         .form-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        @media (max-width: 768px) {
+            .form-layout { grid-template-columns: 1fr; gap: 30px; }
+        }
         .form-group { margin-bottom: 20px; }
         label { display: block; font-size: 0.8rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.03em; margin-bottom: 6px; color: var(--muted-text); }
-        input, select { width: 100%; padding: 8px 0; background: transparent; border: none; border-bottom: 1px solid var(--border-color); color: var(--text-color); font-size: 0.9rem; border-radius: 0; }
-        button.action-btn { background: var(--text-color); color: var(--bg-color); border: none; padding: 12px 24px; font-size: 0.85rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; cursor: pointer; }
+        input, select { width: 100%; padding: 8px 0; background: transparent; border: none; border-bottom: 1px solid var(--border-color); color: var(--text-color); font-size: 0.9rem; border-radius: 0; transition: border-color 0.2s ease; }
+        input:focus, select:focus { outline: none; border-bottom-color: var(--border-focus); }
+        button.action-btn { background: var(--text-color); color: var(--bg-color); border: none; padding: 12px 24px; font-size: 0.85rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; cursor: pointer; transition: opacity 0.2s ease; }
+        button.action-btn:hover { opacity: 0.9; }
         .output-panel { border: 1px solid var(--text-color); padding: 25px; background: var(--card-bg); align-self: start; }
-        #citation-output { font-family: "Georgia", serif; font-size: 0.95rem; line-height: 1.7; }
+        .output-panel h4 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; }
+        #citation-output { font-family: "Georgia", serif; font-size: 0.95rem; line-height: 1.7; word-break: break-all; }
+        #citation-output em { font-style: italic; }
     </style>
 </head>
 <body>
@@ -200,8 +202,7 @@
 
         <nav>
             <button onclick="switchTab('learn')" id="btn-learn" class="active">01 Document</button>
-            <button onclick="switchTab('practice')" id="btn-practice">02 Verify</button>
-            <button onclick="switchTab('apply')" id="btn-apply">03 Generate</button>
+            <button onclick="switchTab('apply')" id="btn-apply">02 Generate</button>
         </nav>
 
         <div id="learn" class="section active">
@@ -233,21 +234,9 @@
                 </div>
                 <div class="card">
                     <h3>Structure of a complete reference</h3>
-                    <p>To cite all data sources, follow the structure as shown here..</p>
+                    <p>To cite all data sources, follow the structure as shown here.</p>
                     <div class="citation-example">User0x. (2025). <em>Re: Protocols</em>. Node Archive. http://url.org</div>
                 </div>
-            </div>
-        </div>
-
-        <div id="practice" class="section">
-            <h2>Diagnostic Evaluation</h2>
-            <div class="quiz-container">
-                <div id="quiz-box">
-                    <div class="question" id="quiz-question">Initializing diagnostic arrays...</div>
-                    <div class="options" id="quiz-options"></div>
-                </div>
-                <div id="quiz-feedback"></div>
-                <button class="action-btn" id="next-btn" style="display:none; margin-top: 10px;" onclick="loadQuestion()">Next Evaluation</button>
             </div>
         </div>
 
@@ -312,64 +301,9 @@
             
             document.getElementById(tabId).classList.add('active');
             document.getElementById('btn-' + tabId).classList.add('active');
-
-            if(tabId === 'practice') { loadQuestion(); }
         }
 
-        // Assessment Database
-        const quizData = [
-            {
-                q: "When citing on a presentation slide, where is the most appropriate location for the Author-Date citation?",
-                options: ["In the Title of the slide", "At the bottom-right or adjacent to the specific point", "Only on the last slide", "Citations are not required on slides"],
-                correct: 1
-            },
-            {
-                q: "What spatial mechanic is required for the Reference section at the end of a manuscript?",
-                options: ["Center alignment", "Hanging indents (0.5 in.)", "Double-spaced only with no indents", "Numbered lists"],
-                correct: 1
-            },
-            {
-                q: "How do you indicate that a typo in a quoted alternative source was intentional by the original author?",
-                options: ["Correct the typo silently", "Use [sic] in italics inside brackets", "Add a footnote explaining the error", "Use a bold asterisk *"],
-                correct: 1
-            }
-        ];
-
-        let currentQuestionIndex = 0;
-
-        function loadQuestion() {
-            document.getElementById('next-btn').style.display = 'none';
-            document.getElementById('quiz-feedback').innerText = '';
-            
-            let qData = quizData[currentQuestionIndex];
-            document.getElementById('quiz-question').innerText = qData.q;
-            
-            let optionsDiv = document.getElementById('quiz-options');
-            optionsDiv.innerHTML = '';
-            
-            qData.options.forEach((opt, idx) => {
-                let btn = document.createElement('button');
-                btn.className = 'option-btn';
-                btn.innerText = opt;
-                btn.onclick = () => checkAnswer(idx);
-                optionsDiv.appendChild(btn);
-            });
-        }
-
-        function checkAnswer(selectedIdx) {
-            let correctIdx = quizData[currentQuestionIndex].correct;
-            let feedback = document.getElementById('quiz-feedback');
-            
-            if(selectedIdx === correctIdx) {
-                feedback.innerHTML = "<span style='color:#111111; font-weight:600;'>Verification Successful. Matrix entry validated.</span>";
-            } else {
-                feedback.innerHTML = "<span style='color:#666666;'>Verification Failed. Re-evaluate parameters.</span>";
-            }
-            
-            currentQuestionIndex = (currentQuestionIndex + 1) % quizData.length;
-            document.getElementById('next-btn').style.display = 'block';
-        }
-
+        // Form Presentation Logic
         function adjustForm() {
             const type = document.getElementById('source-type').value;
             const usernameGroup = document.getElementById('username-group');
@@ -390,6 +324,7 @@
             }
         }
 
+        // Reference Compilation Engine
         function generateCitation() {
             const type = document.getElementById('source-type').value;
             let author = document.getElementById('author').value.trim() || "Unknown Author";
