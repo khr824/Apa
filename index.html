@@ -24,7 +24,7 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            font-size: 15px;
+            font-size: 14px;
             letter-spacing: -0.01em;
             line-height: 1.6;
             padding: 60px 40px;
@@ -46,7 +46,7 @@
         }
 
         header h1 {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: 600;
             letter-spacing: -0.02em;
             margin-bottom: 8px;
@@ -55,7 +55,7 @@
 
         header p {
             color: var(--muted-text);
-            font-size: 1rem;
+            font-size: 0.95rem;
         }
 
         nav {
@@ -70,7 +70,7 @@
             background: transparent;
             border: none;
             color: var(--muted-text);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 0.05em;
@@ -109,17 +109,18 @@
         }
 
         h2 {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 500;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
             letter-spacing: -0.01em;
+            text-transform: capitalize;
         }
 
         /* Learn Section */
         .grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 40px;
+            gap: 50px 40px;
         }
 
         @media (max-width: 768px) {
@@ -132,15 +133,36 @@
         }
 
         .card h3 {
-            font-size: 1rem;
+            font-size: 0.9rem;
             font-weight: 600;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
         }
 
         .card p {
             color: var(--muted-text);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             margin-bottom: 15px;
+        }
+
+        .card ul {
+            list-style: none;
+            color: var(--muted-text);
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+        }
+
+        .card ul li {
+            margin-bottom: 5px;
+            padding-left: 15px;
+            position: relative;
+        }
+
+        .card ul li::before {
+            content: "—";
+            position: absolute;
+            left: 0;
         }
 
         .citation-example {
@@ -148,136 +170,24 @@
             font-style: normal;
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            padding: 15px;
-            font-size: 0.9rem;
+            padding: 12px;
+            font-size: 0.85rem;
             word-break: break-all;
         }
 
-        /* Practice Section */
-        .quiz-container {
-            max-width: 650px;
-        }
-
-        .question {
-            font-size: 1.1rem;
-            font-weight: 400;
-            margin-bottom: 25px;
-        }
-
-        .options {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-bottom: 25px;
-        }
-
-        .option-btn {
-            background: transparent;
-            border: 1px solid var(--border-color);
-            color: var(--text-color);
-            padding: 14px 20px;
-            text-align: left;
-            cursor: pointer;
-            font-size: 0.95rem;
-            transition: all 0.2s ease;
-        }
-
-        .option-btn:hover {
-            border-color: var(--border-focus);
-            background: var(--card-bg);
-        }
-
-        #quiz-feedback {
-            font-size: 0.95rem;
-            margin-bottom: 20px;
-            min-height: 24px;
-        }
-
-        /* Apply Section */
-        .form-layout {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-        }
-
-        @media (max-width: 768px) {
-            .form-layout { grid-template-columns: 1fr; gap: 30px; }
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            font-size: 0.85rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.03em;
-            margin-bottom: 6px;
-            color: var(--muted-text);
-        }
-
-        input, select {
-            width: 100%;
-            padding: 10px 0;
-            background: transparent;
-            border: none;
-            border-bottom: 1px solid var(--border-color);
-            color: var(--text-color);
-            font-size: 0.95rem;
-            border-radius: 0;
-            transition: border-color 0.2s ease;
-        }
-
-        input:focus, select:focus {
-            outline: none;
-            border-bottom-color: var(--border-focus);
-        }
-
-        button.action-btn {
-            background: var(--text-color);
-            color: var(--bg-color);
-            border: none;
-            padding: 14px 28px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            cursor: pointer;
-            transition: opacity 0.2s ease;
-        }
-
-        button.action-btn:hover {
-            opacity: 0.9;
-        }
-
-        .output-panel {
-            border: 1px solid var(--text-color);
-            padding: 30px;
-            background: var(--card-bg);
-            align-self: start;
-        }
-
-        .output-panel h4 {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 20px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 10px;
-        }
-
-        #citation-output {
-            font-family: "Georgia", serif;
-            font-size: 1rem;
-            line-height: 1.7;
-            word-break: break-all;
-        }
-
-        #citation-output em {
-            font-style: italic;
-        }
+        /* Practice & Apply styles remain consistent... */
+        .quiz-container { max-width: 650px; }
+        .question { font-size: 1.05rem; margin-bottom: 25px; }
+        .options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 25px; }
+        .option-btn { background: transparent; border: 1px solid var(--border-color); color: var(--text-color); padding: 12px 18px; text-align: left; cursor: pointer; font-size: 0.9rem; transition: all 0.2s ease; }
+        .option-btn:hover { border-color: var(--border-focus); background: var(--card-bg); }
+        .form-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; font-size: 0.8rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.03em; margin-bottom: 6px; color: var(--muted-text); }
+        input, select { width: 100%; padding: 8px 0; background: transparent; border: none; border-bottom: 1px solid var(--border-color); color: var(--text-color); font-size: 0.9rem; border-radius: 0; }
+        button.action-btn { background: var(--text-color); color: var(--bg-color); border: none; padding: 12px 24px; font-size: 0.85rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; cursor: pointer; }
+        .output-panel { border: 1px solid var(--text-color); padding: 25px; background: var(--card-bg); align-self: start; }
+        #citation-output { font-family: "Georgia", serif; font-size: 0.95rem; line-height: 1.7; }
     </style>
 </head>
 <body>
@@ -285,7 +195,7 @@
     <div class="container">
         <header>
             <h1>APA 7 Reference Matrix</h1>
-            <p>A rigorous verification tool for defensive academic formatting within independent and non-standard research.</p>
+            <p>Rigorous verification and mechanics for non-standard academic presentations and manuscripts.</p>
         </header>
 
         <nav>
@@ -295,28 +205,36 @@
         </nav>
 
         <div id="learn" class="section active">
-            <h2>Structural Mechanics</h2>
+            <h2>Mechanical Protocols</h2>
             <div class="grid">
                 <div class="card">
-                    <h3>In-Text Anonymity & Collective Identity</h3>
-                    <p>When citing independent research collectives or anonymized units, preserve organizational architecture in the author block.</p>
-                    <div class="citation-example">(Anonymous, 2026)</div>
-                    <div class="citation-example" style="margin-top: 8px;">(Institute for Critical Infrastructure, 2024)</div>
+                    <h3>Slide Presentation Protocols</h3>
+                    <p>When presenting data visually, maintain fidelity to the source without sacrificing slide legibility.</p>
+                    <ul>
+                        <li><strong>In-text:</strong> Place citations at the bottom-right of the slide or adjacent to the cited point.</li>
+                        <li><strong>Reference Section:</strong> Terminal slides must list all cited works with a hanging indent.</li>
+                        <li><strong>Page Numbering:</strong> Integers should be placed consistently in the bottom-right quadrant.</li>
+                    </ul>
                 </div>
                 <div class="card">
-                    <h3>Absent Chronology Protocol</h3>
-                    <p>In instances where formal publication timelines are omitted by the archiving source, implement standard structural fallbacks.</p>
-                    <div class="citation-example">Title of Document. (n.d.). Repository Archive.</div>
+                    <h3>Manuscript Structural Layout</h3>
+                    <p>Formal documents require strict adherence to spatial parameters and navigation elements.</p>
+                    <ul>
+                        <li><strong>Spacing:</strong> Double-space all body text and reference lists.</li>
+                        <li><strong>Indents:</strong> Use 0.5 in. indents for paragraphs and hanging indents for references.</li>
+                        <li><strong>Table of Contents:</strong> Required for underground theses; lists all major section headers and sub-headers.</li>
+                        <li><strong>Page Breaks:</strong> Forced breaks before the Title Page, Abstract, and References.</li>
+                    </ul>
                 </div>
                 <div class="card">
-                    <h3>Independent Prints & Ephemera</h3>
-                    <p>Treat modern prints, independent journals, and limited distributions as standard books or monographs. Author-as-publisher rule applies.</p>
-                    <div class="citation-example">Collective. (Year). <em>Title of distribution</em>. Organization Name.</div>
+                    <h3>Transcription Fidelity [sic]</h3>
+                    <p>Use <em>[sic]</em> in italics within brackets to indicate an error (spelling or grammar) exists in the original alternative source.</p>
+                    <div class="citation-example">"The collective remains commited [<em>sic</em>] to total decentralization."</div>
                 </div>
                 <div class="card">
-                    <h3>Archived Data Nodes (Forums & Leaks)</h3>
-                    <p>For decentralized data sources, identify the individual handle in square brackets alongside any verifiable real identities.</p>
-                    <div class="citation-example">User0x. (2025, October 12). <em>Re: Decentralization models</em>. Cryptographic Node. http://url-path.org</div>
+                    <h3>Digital Node Metadata</h3>
+                    <p>For decentralized data sources, identify handles in square brackets alongside verifiable real identities.</p>
+                    <div class="citation-example">User0x. (2025). <em>Re: Protocols</em>. Node Archive. http://url.org</div>
                 </div>
             </div>
         </div>
@@ -401,18 +319,18 @@
         // Assessment Database
         const quizData = [
             {
-                q: "Identify the correct format for an in-text citation referencing an anonymous distribution titled 'Autonomous Protocol' published in 2024:",
-                options: ["(Anonymous, 2024)", "(*Autonomous Protocol*, 2024)", "(\"Autonomous Protocol,\" 2024)", "(Autonomous Protocol, 2024)"],
+                q: "When citing on a presentation slide, where is the most appropriate location for the Author-Date citation?",
+                options: ["In the Title of the slide", "At the bottom-right or adjacent to the specific point", "Only on the last slide", "Citations are not required on slides"],
                 correct: 1
             },
             {
-                q: "What formatting notation represents missing date parameters within an APA 7 bibliographic layout?",
-                options: ["(s.d.)", "(null)", "(n.d.)", "(0000)"],
-                correct: 2
+                q: "What spatial mechanic is required for the Reference section at the end of a manuscript?",
+                options: ["Center alignment", "Hanging indents (0.5 in.)", "Double-spaced only with no indents", "Numbered lists"],
+                correct: 1
             },
             {
-                q: "Where must a screen handle be located if attributing a formal entry to an online network pseudonym?",
-                options: ["In quotation marks preceding the author fields", "Enclosed in square brackets following the real name or structural author replacement", "Appended to the terminal string of the URL metadata", "Omitted completely to satisfy traditional parameters"],
+                q: "How do you indicate that a typo in a quoted alternative source was intentional by the original author?",
+                options: ["Correct the typo silently", "Use [sic] in italics inside brackets", "Add a footnote explaining the error", "Use a bold asterisk *"],
                 correct: 1
             }
         ];
@@ -443,16 +361,15 @@
             let feedback = document.getElementById('quiz-feedback');
             
             if(selectedIdx === correctIdx) {
-                feedback.innerHTML = "<span style='color:#111111; font-weight:600;'>Verification Successful. Matrix structural entry aligns with APA 7 rules.</span>";
+                feedback.innerHTML = "<span style='color:#111111; font-weight:600;'>Verification Successful. Matrix entry validated.</span>";
             } else {
-                feedback.innerHTML = "<span style='color:#666666;'>Verification Failed. Structural mismatch detected. Re-evaluate parameters.</span>";
+                feedback.innerHTML = "<span style='color:#666666;'>Verification Failed. Re-evaluate parameters.</span>";
             }
             
             currentQuestionIndex = (currentQuestionIndex + 1) % quizData.length;
             document.getElementById('next-btn').style.display = 'block';
         }
 
-        // Form Presentation Logic
         function adjustForm() {
             const type = document.getElementById('source-type').value;
             const usernameGroup = document.getElementById('username-group');
@@ -473,7 +390,6 @@
             }
         }
 
-        // Reference Compilation Engine
         function generateCitation() {
             const type = document.getElementById('source-type').value;
             let author = document.getElementById('author').value.trim() || "Unknown Author";
